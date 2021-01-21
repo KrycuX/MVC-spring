@@ -1,0 +1,33 @@
+<!DOCTYPE html >
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
+
+
+<div th:insert="~{shared/fragments :: nav}"></div>
+
+
+
+<div style="display: block" class="container" >
+    <H1 style="text-align: center; font-size: 40px">OBECNIE NA TOPIE!</H1>
+    <div th:each="gra:${gry}" >
+
+        <h1 class="title" th:if="*{gra.bestseller==true}" th:text="*{gra.title}"></h1>
+        <h3 th:if="*{gra.bestseller==true}" th:text="*{gra.price}+' PLN'"><p></p></h3>
+
+    </div>
+
+
+    <div th:replace="~{shared/fragments :: footer}"></div>
+</div>
+
+
+</body>
+
+</html>

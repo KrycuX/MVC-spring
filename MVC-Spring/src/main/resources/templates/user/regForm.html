@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+<div class="container">
+
+    <form id="login-form" th:action="@{/user/registration}" th:object="${userCommand}" th:method="post" role="form" style="display: block;">
+        <div class="form-group">
+            <input type="text" name="username" th:field="*{username}" tabindex="1" class="form-control" placeholder="Username" value="">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" th:field="*{password}" tabindex="2" class="form-control" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <input type="password" name="repeatPassword" th:field="*{passwordConfirm}" tabindex="3" class="form-control" placeholder="Confirm Password">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{email}" tabindex="3" class="form-control" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="register-submit" id="register-submit" tabindex="4"  value="Register">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:replace="~{shared/fragments :: footer}"></div>
+</body>
+</html>

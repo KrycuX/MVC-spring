@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+
+
+
+<div th:replace="~{shared/fragments :: search}"></div>
+
+
+
+<div th:replace="~{shared/fragments :: pagination('list', ${page})}"></div>
+
+
+<div class="container">
+
+<table class="table table-striped">
+    <thead> <tr>
+
+
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'title',#{label.gra.title})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'author',#{label.gra.author})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'realeseDate',#{label.gra.realeseDate})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'price',#{label.gra.price})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'bestseller',#{label.gra.best})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'rodzajGry.name',#{label.gra.type})}">
+        <th cope="col" th:replace="~{shared/fragments :: tableHeader('list',${page}, 'rate.ocena',#{label.gra.rate})}">
+
+
+       </thead>
+    <tr th:each="gra:${page}">
+
+        <td th:text="*{gra.title}"></td>
+        <td th:text="*{gra.author}"></td>
+        <td th:text="*{gra.realeseDate}"></td>
+        <td th:text="*{gra.price}"></td>
+        <td th:if="*{gra.bestseller==true}">tak</td>
+        <td th:if="*{gra.bestseller==false}">nie</td>
+
+        <td th:text="*{gra.rodzajGry.name}"></td>
+        <td th:text="*{gra.rate.ocena}"></td>
+        <td sec:authorize="hasRole('ADMIN') or hasRole('VIP')" ><a sec:authorize="hasRole('VIP') or hasRole('ADMIN')" class="btn btn-primary" th:href="@{edit(id=*{gra.id})}" role="button">Edit</a> <a sec:authorize="hasRole('ADMIN')" class="btn btn-danger" th:href="@{delete(id=*{gra.id})}" role="button">Delete</a>
+            <a  class="btn btn-primary" th:href="@{show(id=*{gra.id})}" role="button">show</a> </td>
+
+    </tr>
+</table>
+
+
+
+    <div th:replace="~{shared/fragments :: footer}"></div>
+</div>
+
+
+
+
+</body>
+</html>

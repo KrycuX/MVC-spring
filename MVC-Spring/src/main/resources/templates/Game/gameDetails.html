@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="~{shared/fragments :: script}"></div>
+
+
+</head>
+
+<body>
+
+
+
+
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+
+<div class="container" th:object="${gra}" >
+
+
+
+    <div style="position: relative;clear: both" >
+        <div style="display: flex; justify-content: flex-start; align-items: flex-start"> <h1 class="h1title" th:text="*{title}"></h1> <span
+                style="margin-top: 10px; padding: 3px; border-radius: 5px; text-align: center"
+                class="badge badge-danger" th:if="*{bestseller==true}">Bestseller</span></div>
+
+        <div style="display: flex">
+
+            <h2 class="author" th:text="*{author}"></h2>
+            <h2 class="price" th:text="*{price}+' PLN'"></h2>
+
+        </div>
+
+        <div style="display: flex">
+
+            <h2 style="margin-right: 15px" th:text="*{rodzajGry.name}"></h2>
+            <h2 th:text="*{rate.ocena}"></h2>
+
+
+        </div>
+    </div>
+
+
+    <div style="display: block;  clear: both; padding: 10px;margin: 10px">
+        <h3 style="text-align: center">Miejsce na opis</h3>
+
+        <img th:src="'data:'+*{photo.type}+';base64, '+*{photo.base64Content}">
+        <img th:src="'/images/'+*{photo.fileName}">
+    </div>
+
+
+</div>
+
+
+
+<div th:replace="~{shared/fragments :: footer}"></div>
+
+
+</body>
+</html>

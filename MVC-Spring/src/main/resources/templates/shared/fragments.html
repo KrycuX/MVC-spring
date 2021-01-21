@@ -1,0 +1,258 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org
+">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:fragment="script">
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
+        <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              rel="stylesheet">
+        <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+
+        <meta content="" name="description"/>
+        <meta
+                content="width=device-width, initial-scale=1, shrink-to-fit=no"
+                name="viewport"
+        />
+        <script crossorigin="anonymous"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script crossorigin="anonymous"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script crossorigin="anonymous"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//raw.github.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+        <script type="text/javascript">
+
+        </script>
+
+
+    </div>
+</head>
+<body>
+
+
+</div>
+<div style="float:right; margin-right: 30px; display: flex;" th:fragment="microBar">
+    <a class="btn btn-outline-warning" role="button"
+       sec:authorize="!isAuthenticated()" style="margin-right: 30px; margin-left: 30px; font-size: 15px;" th:href="@{/game/loginPanel}">[[#{label.button.login}]]</a>
+
+    <div style="max-height: 20px; margin-bottom: 20px; float:right;">
+        <form role="form" sec:authorize="isAuthenticated()"
+              style="padding-top: 1px;padding-bottom: 10px; float:right;" th:action="@{/logout}" th:method="post">
+            <input class="btn btn-outline-warning" style="float:right;" th:value="#{label.button.logout}" type="submit">
+        </form>
+    </div>
+    <a class="btn btn-outline-warning" role="button"
+       sec:authorize="!isAuthenticated()" style="margin-right: 30px; margin-left: 30px; font-size: 15px;" th:href="@{/user/registration}">[[#{label.button.registry}]]</a>
+
+    <div class="dropdown">
+        <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                id="dropdownMenu2" type="button">
+            [[#{label.menu.language}]]
+        </button>
+        <div aria-labelledby="dropdownMenu2" class="dropdown-menu"
+             th:with="currentUrl=(${#httpServletRequest.requestURI+'?'+ #strings.defaultString(#httpServletRequest.queryString, '')})">
+            <a class="dropdown-item"
+               th:href="@{${currentUrl.toString().replaceAll('&lang=pl','').replaceAll('&lang=en','')}(lang='pl')}">Polski</a>
+            <a class="dropdown-item"
+               th:href="@{${currentUrl.toString().replaceAll('&lang=pl','').replaceAll('&lang=en','')}(lang='en')}">English</a>
+
+        </div>
+    </div>
+</div>
+
+<div th:fragment="navbar"><!-- Image and text -->
+
+    <nav class="naviheader" style="margin-top: 10px;">
+        <a href="/">
+            <img class="imgh" src="/css/headerv2.jpg">
+
+        </a>
+    </nav>
+
+
+    <div class="navibar" th:fragment="nav">
+        <ul class="nav nav-pills nav-fill">
+
+            <li th:class="${activePage == 'add'} ? 'nav-item active' : 'nav-item'">
+                <a th:class="${activePage == 'add'} ? 'nav-link active' : 'nav-link'" th:href="@{/game/add}">[[#{label.gra.add}]]</a>
+            </li>
+            <li th:class="${activePage == 'list'} ? 'nav-item active' : 'nav-item'">
+                <a th:class="${activePage == 'list'} ? 'nav-link active' : 'nav-link'" th:href="@{/game/list}">[[#{label.gra.list}]]</a>
+            </li>
+            <li th:class="${activePage == 'listEdit'} ? 'nav-item active' : 'nav-item'">
+                <a th:class="${activePage == 'listEdit'} ? 'nav-link active' : 'nav-link'" th:href="@{/game/listEdit}">[[#{label.gra.edit}]]</a>
+            </li>
+
+            <!--Dodać panel Użytkownika  -->
+
+
+        </ul>
+
+    </div>
+
+
+    <div class="Pages" th:fragment="pagination(mainUrl,page)">
+
+        <div aria-label="..."
+             th:with="
+
+
+         currentPage='page='+${page.number},
+         currentSize='size='+${page.size},
+         currentSort='sort='+${#strings.replace(page.sort, ': ',',')},
+         firstPageUrl=${mainUrl}+'?page=0&'+ ${currentSize},
+         prevPageUrl=${mainUrl}+'?page='+${page.number - 1}+'&size='+${page.size},
+         nextPageUrl=${mainUrl}+'?page='+${page.number + 1}+'&size='+${page.size},
+         lastPageUrl=${mainUrl}+'?page='+${page.totalPages - 1}+'&'+${currentSize}
+    "
+        >
+            <ul class="pagination" style="float: left;" th:if="${page.totalPages gt 0}">
+
+                <li class="page-item" th:classappend="${page.first}?'disabled'">
+                    <a class="page-link" tabindex="-1" th:href="${prevPageUrl}">&laquo;</a>
+                </li>
+
+                <li class="page-item" th:classappend="${pageIdx eq page.number}?'active'"
+                    th:each="pageIdx:${#numbers.sequence(0, page.totalPages-1)}">
+                    <a class="page-link"
+                       th:href="${mainUrl}+'?page='+${pageIdx}+'&'+${currentSize}+'&'+${currentSort}">
+                        [[${pageIdx+1}]]
+                        <span class="sr-only" th:if="${pageIdx eq page.number}"></span>
+                    </a>
+                </li>
+
+
+                <li class="page-item" th:classappend="${page.last}?'disabled'">
+                    <a class="page-link" th:href="${nextPageUrl}">&raquo;</a>
+                </li>
+                <li class="page-item" th:classappend="${page.first}?'disabled'">
+                    <a class="page-link" tabindex="0" th:href="${firstPageUrl}">First</a>
+                </li>
+                <li class="page-item" th:classappend="${page.last}?'disabled'">
+                    <a class="page-link" tabindex="page.totalPages-1" th:href="${lastPageUrl}">Last</a>
+                </li>
+            </ul>
+            <ul class="pagination" style="float: right" th:with="pageSizes=${ {20, 30, 50, 100} }">
+                <li class="page-item" th:classappend="${page.size eq size}?'active'"
+                    th:each="size:${pageSizes}">
+                    <a class="page-link"
+                       th:href="${mainUrl}+'?page=0&size='+${size}">
+                        [[${size}]]
+                        <span class="sr-only" th:if="${size eq page.size}"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+    <div th:fragment="search">
+
+        <form method="post" th:action="@{list}" th:object="${gameFilter}">
+            <div class="form-group row">
+
+                <label class="col-sm-2 col-form-label" for="rodzajGry.id">[[#{label.gra.querytypes}]]</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="rodzajGry.id" th:field="*{queryMode}">
+                        <option th:each="typ:${typyZapytan}" th:text="${typ}" th:value="${typ}"/>
+                    </select>
+
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-5">
+
+                    <input class="form-control" id="title" name="phrase" th:field="*{phrase}" th:placeholder="#{label.gra.placeholder}"
+                           type="text">
+                </div>
+                <div class="col-sm-1">
+
+                    <input class="form-control" id="minPrice" name="phrase" placeholder="min" th:field="*{minPrice}"
+                           type="text">
+                </div>
+                <div class="col-sm-1">
+
+                    <input class="form-control" id="maxPrice" name="phrase" placeholder="max" th:field="*{maxPrice}"
+                           type="text">
+                </div>
+
+                <div class="col-sm-2">
+
+                    <input class="form-control" id="dateFrom" name="phrase" placeholder="Od" th:field="*{dateFrom}"
+                           type="date">
+                </div>
+                <div class="col-sm-2">
+
+                    <input class="form-control" id="dateTo" name="phrase" placeholder="Do" th:field="*{dateTo}"
+                           type="date">
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-succes" type="submit">[[#{label.gra.find}]]</button>
+                    <button class="btn btn-warning" th:name="clear" type="submit">[[#{label.gra.clear}]]</button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+
+                <div class="col-sm-5">
+                    <label class="col-sm-2 col-form-label">[[#{label.gra.genre}]]</label>
+                    <div class="custom-control custom-checkbox" th:each="dziedzina:${dziedziny}">
+                        <input class="custom-control-input" th:field="*{gameGenres}" th:id="${dziedzina}"
+                               th:value="${dziedzina.id}" type="checkbox">
+                        <label class="custom-control-label" th:for="${dziedzina}" th:text="${dziedzina.name}"></label>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <label class="col-sm-2 col-form-label">[[#{label.gra.typeSearch}]]</label>
+                    <div class="custom-control custom-checkbox" th:each="rodzaj:${rGry}">
+                        <input class="custom-control-input" th:field="*{rodzajGryList}" th:id="${rodzaj}"
+                               th:value="${rodzaj.id}" type="checkbox">
+                        <label class="custom-control-label" th:for="${rodzaj}" th:text="${rodzaj.name}"></label>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <div class="footer" th:fragment="footer">
+        <!-- Footer -->
+        <footer>
+
+            <!-- Copyright -->
+            © 2020 Copyright:
+            Krynicki Tomasz Sp. Z.o.o
+            Rola: <span sec:authentication="principal.authorities" sec:authorize="isAuthenticated()"/>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+    </div>
+
+
+    <th th:classappend="${page.sort.getOrderFor(propertyName) eq null ?'sorting_both':
+            (page.sort.getOrderFor(propertyName).ascending?'sorting_asc':'sorting_desc')}"
+        th:fragment="tableHeader(mainUrl, page, propertyName, label)">
+        <a th:href="@{${mainPath}(page=${page.number},size=${page.size} ,sort=${propertyName}+','+${page.sort.getOrderFor(propertyName) eq null or page.sort.getOrderFor(propertyName).descending?'ASC':'DESC'})}">[[${label}]]</a>
+    </th>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+
+<div th:insert="~{shared/fragments :: microBar}"></div>
+
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+
+<div class="container">
+
+
+
+    <form th:method="post" th:action="@{save}" th:object="${gry}" enctype="multipart/form-data">
+
+        <table>
+
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+
+
+            <tr>
+                <td><input th:field="*{title}">
+                    <p style="color:red" th:if="${#fields.hasErrors('title')}"
+                       th:each="err : ${#fields.errors('title')}"
+                       th:text="${err}"></p>
+                    <input type="hidden" th:field="*{id}"></td>
+                <td>
+                    <input th:field="*{author}">
+                    <p style="color:red" th:if="${#fields.hasErrors('author')}"
+                       th:each="err : ${#fields.errors('author')}"
+                       th:text="${err}"></p></td>
+            </tr>
+
+
+            <tr>
+                <th>Data</th>
+                <th>Price</th>
+            </tr>
+
+
+            <td><input type="date" th:field="*{realeseDate}">
+                <p style="color:red" th:if="${#fields.hasErrors('realeseDate')}"
+                   th:each="err : ${#fields.errors('realeseDate')}" th:text="${err}"></td>
+            <td><input th:field="*{price}">
+                <p style="color:red" th:if="${#fields.hasErrors('price')}" th:each="err : ${#fields.errors('price')}"
+                   th:text="${err}"></td>
+            </tr>
+
+
+            <tr>
+                <th>Bestseller</th>
+                <th>Version</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" th:field="*{bestseller}"></td>
+
+                <td><select th:field="*{rodzajGry.id}">
+                    <option value="-1" selected="selected">-Choose-</option>
+                    <option th:each="rG:${rGry}" th:value="${rG.id}">[[${rG.name}]]</option>
+                </select>
+                    <p style="color:red" th:if="${#fields.hasErrors('rodzajGry.id')}"
+                       th:each="err : ${#fields.errors('rodzajGry.id')}" th:text="${err}"></td>
+            </tr>
+
+            <tr>
+                <th>Rate</th>
+                <th>Gatunek</th>
+            </tr>
+            <tr>
+
+                <td style="display: flex"><select  th:field="*{rate.id}">
+                    <option value="-1" selected="selected">-Choose-</option>
+                    <option th:each="oG:${oGry}" th:value="${oG.id} ">[[${oG.ocena}]]</option>
+
+                </select>
+                    <p style="color:red;position: relative" th:if="${#fields.hasErrors('rate.id')}"
+                       th:each="err : ${#fields.errors('rate.id')}" th:text="${err}"></td>
+                <td >
+                    <div th:each="dziedzina:${dziedziny}" class="custom-control custom-checkbox">
+                    <input type="checkbox" th:field="*{genres}" th:value="${dziedzina.id}" class="custom-control-input" th:id="${dziedzina}" >
+                    <label class="custom-control-label" th:for="${dziedzina}" th:text="${dziedzina.name}"></label>
+                </div>
+                    <small style="color: red" th:if="${#fields.hasErrors('genres')}" th:each="err : ${#fields.errors('genres')}" th:text="${err}"/></td>
+            </tr>
+
+
+            <tr>
+
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Dodaj Plik</label>
+    <div class="col-sm-10">
+        <div class="coustom-file">
+            <input type="file" name="multipartFile" class="custom-file-input" id="customFileLangHTML" accept=".png,.jpg">\
+            <label class="custom-file-label" for="customFileLangHTML" data-browse="Wybierz..."></label>
+        </div>
+        <small style="color:red;" th:if="${#fields.hasErrors('photo')}" th:each="err : ${#fields.errors('photo')}" th:text="${err}"></small>
+    </div>
+</div>
+
+            </tr>
+
+            <tr>
+
+
+                <td class="Butto"><input type="submit" value="SEND"></td>
+
+            </tr>
+        </table>
+    </form>
+    <div th:replace="~{shared/fragments :: footer}"></div>
+</div>
+
+
+</body>
+</html>
