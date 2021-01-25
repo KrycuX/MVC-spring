@@ -18,7 +18,7 @@ private JavaMailSender emailSender;
     @Override
     public void sendSimpleMessage(String to, String Subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("yuutatogashi@o2.pl");
+        message.setFrom("platformymail@o2.pl");
         message.setTo(to);
         message.setSubject(Subject);
         message.setText(text);
@@ -29,7 +29,7 @@ private JavaMailSender emailSender;
     public void sendMimeMessage(String to, String Subject, String text) throws MessagingException {
         var mimeMessage=emailSender.createMimeMessage();
         var helper=new MimeMessageHelper(mimeMessage, "utf-8");
-         helper.setFrom("yuutatogashi@o2.pl");
+         helper.setFrom("platformymail@o2.pl");
         helper.setTo(to);
         helper.setSubject(Subject);
         helper.setText(text,true);
