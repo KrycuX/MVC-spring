@@ -26,6 +26,7 @@ public class Rate {
 
 
 
+
     public Rate(int id, String ocena) {
         this.id=id;
         this.ocena=ocena;

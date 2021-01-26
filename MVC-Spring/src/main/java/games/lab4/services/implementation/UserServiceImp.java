@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 public class UserServiceImp implements UserService {
 
 @Autowired
-    UserRep userRep;
+UserRep userRep;
 
 @Autowired
 RoleRep roleRep;

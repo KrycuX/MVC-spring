@@ -20,7 +20,7 @@ public class GameGenre {
     public GameGenre(){
         games= new HashSet<>();
     }
-public GameGenre(String name){
+    public GameGenre(String name){
 
         this.name=name;
 }

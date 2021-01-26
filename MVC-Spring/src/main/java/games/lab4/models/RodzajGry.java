@@ -21,6 +21,8 @@ public RodzajGry(){
 
     }
 
+
+
     public RodzajGry(int id, String name) {
         this.id = id;
         this.name = name;

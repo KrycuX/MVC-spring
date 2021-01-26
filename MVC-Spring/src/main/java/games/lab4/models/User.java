@@ -25,29 +25,7 @@ public class User {
     @Email
     private String email;
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
 
     private String password;
 
@@ -55,13 +33,7 @@ public class User {
     private  String passwordConfirm;
     private boolean enabled= false;
 
-    public String getActivationCode() {
-        return activationCode;
-    }
 
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
 
     private String activationCode;
 
@@ -87,4 +59,6 @@ private boolean isPasswordEquals(){
     public User() {
 
     }
+
+
 }

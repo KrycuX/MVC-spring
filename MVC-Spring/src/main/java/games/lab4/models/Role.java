@@ -41,4 +41,6 @@ public Role(Types type) {
         ROLE_VIP
 }
 
+
+
 }
