@@ -6,10 +6,13 @@
     <div th:replace="~{shared/fragments :: script}"></div>
 </head>
 <body>
+<div th:replace="~{shared/fragments :: microBar}"></div>
 <div th:replace="~{shared/fragments :: nav}"></div>
 
 
 <div class="container">
+
+
 
     <form id="login-form" th:action="@{/user/registration}" th:object="${userCommand}" th:method="post" role="form" style="display: block;">
         <div class="form-group">
@@ -25,6 +28,22 @@
         <div class="form-group">
             <input type="email" name="email" th:field="*{email}" tabindex="3" class="form-control" placeholder="Email">
         </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{imie}" tabindex="3" class="form-control" placeholder="Imie">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{nazwisko}" tabindex="3" class="form-control" placeholder="Nazwisko">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{miasto}" tabindex="3" class="form-control" placeholder="miasto">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{ulica}" tabindex="3" class="form-control" placeholder="ulica">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" th:field="*{nrDomu}" tabindex="3" class="form-control" placeholder="nr mieszkania/domu">
+        </div>
+
 
         <div class="form-group">
             <div class="row">

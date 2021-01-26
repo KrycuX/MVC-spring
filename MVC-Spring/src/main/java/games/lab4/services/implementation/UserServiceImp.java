@@ -1,6 +1,7 @@
 package games.lab4.services.implementation;
 
 import games.lab4.config.ProfilesNames;
+import games.lab4.models.Koszyk;
 import games.lab4.models.Role;
 import games.lab4.models.User;
 import games.lab4.repository.RoleRep;
@@ -71,6 +72,7 @@ roles.add(userRole);
 userForm.setRoles(roles);
 userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
 userForm.setPasswordConfirm(userForm.getPassword());
+userForm.setKoszyk(new Koszyk());
 //userForm.setEnabled(false);
 var activationKey= UUID.randomUUID().toString();
 userForm.setActivationCode(activationKey);

@@ -19,23 +19,33 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-
     @Email
     private String email;
-
-
-
     private String password;
+
+    // dane osobowe
+
+    private String imie;
+    private String nazwisko;
+    private String miasto;
+    private String ulica;
+    private Integer nrDomu;
+
+//
+
+
+
 
     @Transient
     private  String passwordConfirm;
     private boolean enabled= false;
 
-
-
     private String activationCode;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="Koszyk")
+    private Koszyk koszyk;
 
 @AssertTrue
 private boolean isPasswordEquals(){

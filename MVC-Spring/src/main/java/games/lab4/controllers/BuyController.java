@@ -1,35 +1,83 @@
 package games.lab4.controllers;
 
-import games.lab4.models.Game;
 import games.lab4.models.Koszyk;
-import games.lab4.services.KoszykServices;
+import games.lab4.repository.GameRepository;
+import games.lab4.repository.KoszykRep;
+import games.lab4.repository.UserRep;
+import games.lab4.services.GameService;
+import games.lab4.services.KoszykService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/game")
+@RequestMapping("/shop")
 @SessionAttributes({"rGry", "oGry","gameFilter"})
 public class BuyController {
 
+ @Autowired
+ KoszykRep koszykRep;
 
-@Autowired
- KoszykServices koszykServices;
+    @Autowired
+    GameRepository gameRepository;
 
-    @GetMapping("/shop")
-    public String showShop(Model model, Integer id)
+    @Autowired
+    private KoszykService koszykService;
+
+    @Autowired
+    private UserRep userRep;
+
+    @GetMapping("/show")
+    public String showShop(Model model)
     {
+        Authentication y= SecurityContextHolder.getContext().getAuthentication();
 
-        Optional<Koszyk> x=koszykServices.getKoszyk(id);
+        var x= userRep.findByUsername(y.getName());
 
+        var z=koszykRep.findById(x.getKoszyk().getId()).get();
 
-        model.addAttribute("koszyk",x);
+        model.addAttribute("shop",z.getGame());
+        model.addAttribute("obj",z);
+
         return "shop/Koszyk";
     }
+
+
+
+    @GetMapping("/add")
+    public String addToCart(@RequestParam("id") Long idGra) {
+        Authentication y = SecurityContextHolder.getContext().getAuthentication();
+
+        var x = userRep.findByUsername(y.getName());
+
+
+        koszykService.addGame(x.getKoszyk(), idGra);
+        return "redirect:show";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long idGra) {
+
+        Authentication y= SecurityContextHolder.getContext().getAuthentication();
+
+        var x= userRep.findByUsername(y.getName());
+
+        var z=koszykRep.findById(x.getKoszyk().getId()).get();
+
+        koszykService.delete(z,idGra);
+
+
+
+        return "redirect:show";
+    }
+
+
+
+
+
 }

@@ -13,13 +13,13 @@
 <body>
 
 
-
+<div th:insert="~{shared/fragments :: microBar}"></div>
 
 <div th:replace="~{shared/fragments :: nav}"></div>
 
 
 
-<div class="container" th:object="${gra}" >
+<div class="container" >
 
 
 
@@ -48,8 +48,8 @@
     <div style="display: block;  clear: both; padding: 10px;margin: 10px">
         <h3 style="text-align: center">Miejsce na opis</h3>
 
-        <img th:src="'data:'+*{photo.type}+';base64, '+*{photo.base64Content}">
-        <img th:src="'/images/'+*{photo.fileName}">
+       <!-- <img th:src="'data:'+*{photo.type}+';base64, '+*{photo.base64Content}">
+        <img th:src="'/images/'+*{photo.fileName}">-->
     </div>
 
 

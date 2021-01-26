@@ -14,16 +14,19 @@ public class Koszyk {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private Long userId;
+    private Long idUser;
 
     @ManyToMany
-    private List<Game> listGame;
+    private List<Game> game;
 
+    private Integer amount;
     @NumberFormat(pattern="#.00")
-    @NotNull
     private Float price;
+
+
+
 
 
 

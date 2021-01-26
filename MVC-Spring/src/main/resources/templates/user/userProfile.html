@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+">
+<div th:replace="~{shared/fragments :: script}"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
+<div th:insert="~{shared/fragments :: nav}"></div>
+<div class="container" th:object="${user}" style="display: block">
+ <div th:text="*{imie}"></div>
+ <div th:text="*{nazwisko}"></div>
+
+
+
+</div>
+
+<div th:insert="~{shared/fragments :: footer}"></div>
+</body>
+</html>

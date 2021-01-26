@@ -4,6 +4,8 @@ import games.lab4.models.User;
 import games.lab4.repository.UserRep;
 import games.lab4.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +24,15 @@ public class UserRegFormController {
 @Autowired
     private UserRep userRep;
 
+@GetMapping("/show")
+public String show(Model model){
+    Authentication y = SecurityContextHolder.getContext().getAuthentication();
 
+    var x = userRep.findByUsername(y.getName());
+
+    model.addAttribute("user", x);
+    return "user/userProfile";
+}
 
 
 

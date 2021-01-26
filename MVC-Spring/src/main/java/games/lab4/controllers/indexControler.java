@@ -28,6 +28,10 @@ public class indexControler {
     public String showGame(Model m, Optional<Long> id )
 
     {
+
+
+
+
         m.addAttribute("gry", gameRepository.findAll());
         return "index";
     }

@@ -38,10 +38,9 @@
 <body>
 
 
-</div>
+
 <div style="float:right; margin-right: 30px; display: flex;" th:fragment="microBar">
-    <a class="btn btn-outline-warning" role="button"
-       sec:authorize="!isAuthenticated()" style="margin-right: 30px; margin-left: 30px; font-size: 15px;" th:href="@{/game/loginPanel}">[[#{label.button.login}]]</a>
+
 
     <div style="max-height: 20px; margin-bottom: 20px; float:right;">
         <form role="form" sec:authorize="isAuthenticated()"
@@ -49,10 +48,30 @@
             <input class="btn btn-outline-warning" style="float:right;" th:value="#{label.button.logout}" type="submit">
         </form>
     </div>
-    <a class="btn btn-outline-warning" role="button"
-       sec:authorize="!isAuthenticated()" style="margin-right: 30px; margin-left: 30px; font-size: 15px;" th:href="@{/user/registration}">[[#{label.button.registry}]]</a>
 
-    <div class="dropdown">
+    <button  style="margin: auto;margin-left: 5px;margin-right: 5px;" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Search
+    </button>
+    <!--========================================= -->
+    <div class="dropdown" style="margin: auto;margin-left: 5px;margin-right: 5px;">
+        <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                id="dropdownMenu3" type="button">
+            Panel
+        </button>
+        <div aria-labelledby="dropdownMenu3" class="dropdown-menu"
+             th:with="currentUrl=(${#httpServletRequest.requestURI+'?'+ #strings.defaultString(#httpServletRequest.queryString, '')})">
+            <a class="dropdown-item"
+               sec:authorize="!isAuthenticated()"  th:href="@{/game/loginPanel}">[[#{label.button.login}]]</a>
+            <a class="dropdown-item"
+               sec:authorize="!isAuthenticated()" th:href="@{/user/registration}">[[#{label.button.registry}]]</a>
+            <a class="dropdown-item"
+            sec:authorize="isAuthenticated()" th:href="@{/shop/show}">Koszyk</a>
+            <a class="dropdown-item"
+               sec:authorize="isAuthenticated()" th:href="@{user/show}">Profile</a>
+        </div>
+    </div>
+    <!--========================================= -->
+    <div class="dropdown" style="margin: auto;margin-left: 5px;margin-right: 5px;">
         <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                 id="dropdownMenu2" type="button">
             [[#{label.menu.language}]]
@@ -66,6 +85,7 @@
 
         </div>
     </div>
+
 </div>
 
 <div th:fragment="navbar"><!-- Image and text -->
@@ -155,7 +175,13 @@
 
 
     </div>
+
+
     <div th:fragment="search">
+
+
+
+<div class="collapse" id="collapseExample">
 
         <form method="post" th:action="@{list}" th:object="${gameFilter}">
             <div class="form-group row">
@@ -229,6 +255,7 @@
 
 
         </form>
+</div>
 
 
     </div>

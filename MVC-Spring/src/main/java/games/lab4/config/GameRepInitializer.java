@@ -2,6 +2,7 @@ package games.lab4.config;
 
 import games.lab4.baza;
 import games.lab4.models.GameGenre;
+import games.lab4.models.Koszyk;
 import games.lab4.models.Role;
 import games.lab4.models.User;
 import games.lab4.repository.*;
@@ -72,14 +73,30 @@ public class GameRepInitializer {
             User user = new User("user1234",true);
             user.setRoles(new HashSet<>(Arrays.asList(roleUser)));
             user.setPassword(passwordEncoder.encode("user1234"));
+            user.setKoszyk(new Koszyk());
+            user.setImie("Tomasz");
+            user.setNazwisko("Krynicki");
+            user.setMiasto("Turna");
+            user.setUlica("");
+            user.setNrDomu(13);
 
             User admin = new User("admin1234",true);
             admin.setRoles(new HashSet<>(Arrays.asList(roleAdmin)));
             admin.setPassword(passwordEncoder.encode("admin1234"));
+            user.setImie("Admin");
+            user.setNazwisko("Admin");
+            user.setMiasto("Wegrow");
+            user.setUlica("admintestul");
+            user.setNrDomu(21);
 
             User vip2 = new User("vip1234",true);
             vip2.setRoles(new HashSet<>(Arrays.asList(roleVip)));
             vip2.setPassword(passwordEncoder.encode("vip1234"));
+            user.setImie("Tomasz");
+            user.setNazwisko("Krynicki");
+            user.setMiasto("Siedlce");
+            user.setUlica("");
+            user.setNrDomu(13);
 
             userRep.save(user);
             userRep.save(admin);
