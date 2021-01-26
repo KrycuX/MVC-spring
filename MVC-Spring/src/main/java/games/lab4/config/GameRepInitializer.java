@@ -1,10 +1,7 @@
 package games.lab4.config;
 
 import games.lab4.baza;
-import games.lab4.models.GameGenre;
-import games.lab4.models.Koszyk;
-import games.lab4.models.Role;
-import games.lab4.models.User;
+import games.lab4.models.*;
 import games.lab4.repository.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +55,8 @@ public class GameRepInitializer {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+@Autowired
+    private DostawaRep dostawaRep;
 
     @Bean
     InitializingBean init(){
@@ -125,6 +124,12 @@ public class GameRepInitializer {
 
 
         }
+
+            dostawaRep.save(new Dostawa("Odbior Osobisty",0.00f));
+            dostawaRep.save(new Dostawa("Kurier",20.00f));
+            dostawaRep.save(new Dostawa("Paczka Pocztowa",15.00f));
+            dostawaRep.save(new Dostawa("Paczkomat",10.00f));
+
         gameGenreRep.save(new GameGenre("Fantasy"));
         gameGenreRep.save(new GameGenre("Sci-Fi"));
         gameGenreRep.save(new GameGenre("Przygodowa"));

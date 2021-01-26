@@ -17,7 +17,7 @@
 <div th:each="gra:${shop}" style="font-size: 15px;display: flex; padding: 5px;">
     <div th:text="*{gra.title}" style="margin-right: 5px;margin-left: 5px"></div>
     <div th:text="*{gra.price}"></div>
-    <a class="btn btn-primary" th:href="@{delete(id=*{gra.id})}" role="button">delete</a>
+    <a style="float: right;" class="btn btn-primary" th:href="@{delete(id=*{gra.id})}" role="button">delete</a>
 
 
 </div>
@@ -27,6 +27,10 @@
 
     <div th:text="*{price} +  zl."></div>
 </div>
+    <div style="float: right; font-size: 25px;">
+
+        <a th:href="@{order}" type="button">PrzejdzDoZamowienia</a>
+    </div>
 
 
 

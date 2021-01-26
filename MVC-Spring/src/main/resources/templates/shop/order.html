@@ -1,19 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org
 ">
-<div th:replace="~{shared/fragments :: script}"></div>
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
 </head>
 <body>
 <div th:insert="~{shared/fragments :: microBar}"></div>
 <div th:insert="~{shared/fragments :: nav}"></div>
-<div class="container" style="display: block">
+<div class="container" th:object="${user}" style="display: block">
+<form>
+    <div style="display: block">
+    <label>Imie: </label>
+    <input th:field="*{imie}">
+    <label>Nazwisko: </label>
+    <input th:field="*{nazwisko}">
+        </div>
+
+    <div style="display: block;">
+        <label>Miasto: </label>
+        <input th:field="*{miasto}">
+        <label>Ulica: </label>
+        <input th:field="*{ulica}">
+        <label>nr Domu/Mieszkania: </label>
+        <input th:field="*{nrDomu}">
+    </div>
+    <div th:object="${obj}" style="float: right; font-size: 25px; display: flex;">
+
+        <p style="font-style: italic ;font-size: 25px; margin-right: 10px;">Total Price</p><div th:text="*{price} +  zl."></div>
+    </div>
+
+    <div style="display: block;margin-left: 115px;">
+
+    <label>Wybierz rodzaj dostawy</label>
+
+    <select >
+        <option value="-1" selected="selected">-Choose-</option>
+        <option th:each="dostawa:${dostawa}" th:value="${dostawa.id} ">[[${dostawa.nazwa}]] [[${dostawa.cena}]] zl.</option>
+
+    </select>
+    </div>
+ <!--   <div th:each="gra:${shop}" style="font-size: 15px;display: flex; padding: 5px;">
+        <div th:text="*{gra.title}" style="margin-right: 5px;margin-left: 5px"></div>
+        <div th:text="*{gra.price}"></div>
+
+
+
+    </div>-->
 
 
 
 
+
+    <div class="Butto" style="margin-top: 15px;padding-right: 30px;"><input type="submit" value="Zatwierdz"></div>
+</form>
+
+
+
+
+</div>
 
 
 

@@ -1,6 +1,7 @@
 package games.lab4.controllers;
 
 import games.lab4.models.Koszyk;
+import games.lab4.repository.DostawaRep;
 import games.lab4.repository.GameRepository;
 import games.lab4.repository.KoszykRep;
 import games.lab4.repository.UserRep;
@@ -31,6 +32,9 @@ public class BuyController {
 
     @Autowired
     private UserRep userRep;
+
+    @Autowired
+    private DostawaRep dostawaRep;
 
     @GetMapping("/show")
     public String showShop(Model model)
@@ -76,6 +80,28 @@ public class BuyController {
         return "redirect:show";
     }
 
+
+    @GetMapping("/order")
+public String order(Model model)
+    {
+
+
+
+
+
+        Authentication y= SecurityContextHolder.getContext().getAuthentication();
+
+        var x= userRep.findByUsername(y.getName());
+
+        var z=koszykRep.findById(x.getKoszyk().getId()).get();
+
+        var d=dostawaRep.findAll();
+        model.addAttribute("user",x);
+        model.addAttribute("obj",z);
+        model.addAttribute("dostawa",d);
+        model.addAttribute("shop",z.getGame());
+        return "shop/order";
+    }
 
 
 
