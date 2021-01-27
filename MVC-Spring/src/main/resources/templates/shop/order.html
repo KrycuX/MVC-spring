@@ -39,6 +39,7 @@
     <h1>LISTA GIER W ZAMOWIENIU</h1>
     <BR>
     <div th:each="gra:${order.game}" >
+
         <div th:text="${gra.title}"> </div>
         <div th:text="${gra.price}+ zl"> </div>
     </div>

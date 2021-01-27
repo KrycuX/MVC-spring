@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/shop")
@@ -101,10 +98,16 @@ public String order(Model model)
 
         var z=koszykRep.findById(x.getKoszyk().getId()).get();
 
-        var order=new OrderShop();
 
- order.setGame(z.getGame());
+
+        x.setOrder(new OrderShop());
+
+        var order=x.getOrder();
+
+ order.setGame(new ArrayList<Game>(z.getGame()));
  order.setPrice(z.getPrice());
+
+ userRep.save(x);
 
         model.addAttribute("order",order);
 
@@ -127,7 +130,7 @@ public String order(Model model)
 
 
 
-        return "/";
+        return "redirect:/";
     }
 
 

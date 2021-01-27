@@ -26,7 +26,7 @@ public class OrderShop {
     @ManyToOne
     private Platnosc platnosc;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Game> game;
 
 

@@ -2,13 +2,15 @@
 =======MUST HAVE DO ZROBIENIA==================
 - Dodaj opcje koszyk +
 
-- Dodaj opcje dodania karty do swojego profilu -
 
-- Dodaj Wybor metody platnosci -
+
+- Dodaj Wybor metody platnosci +
 
 - Rodzaj Dostawy do klientow +
 
--Tworzenie zamowienia + historia zamowien widoczna w profilu usera -
+-Tworzenie zamowienia (NIE DZIALA)
+
+ historia zamowien widoczna w profilu usera -
 
 -Dodac automatycznie generowana date utworzenia zamowienia -
 

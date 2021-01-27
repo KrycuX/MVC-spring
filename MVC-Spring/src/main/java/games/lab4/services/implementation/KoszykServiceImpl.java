@@ -49,8 +49,8 @@ koszykRep.save(koszyk);
     @Override
     public void delete(Koszyk koszyk, Long id) {
 
-var g= koszyk.getGame();
-var index=0;
+   var g= koszyk.getGame();
+    var index=0;
 Float cena=0.00f;
         for (var x:g
              ) {

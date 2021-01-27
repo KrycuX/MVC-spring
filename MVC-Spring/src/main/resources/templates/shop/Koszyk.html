@@ -21,17 +21,15 @@
 
 
 </div>
-<div style="float: right; font-size: 25px; display: block">
+<div style="float: right; font-size: 25px;">
 
 <div th:object="${obj}" >
 
     <div th:text="*{price} +  zl."></div>
-</div>
-    <div >
-
-        <a th:href="@{order}" type="button">Przejdz Do wyboru Dostawy i platnosci</a>
     </div>
-</div>
+    <div><a th:href="@{order}" type="button">Przejdz Do wyboru Dostawy i platnosci</a>
+    </div>
+       </div>
 
 
 
