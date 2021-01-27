@@ -68,6 +68,8 @@ public class Game {
     @ManyToMany
     private Set<GameGenre> genres;
 
+
+
     private Photo photo;
     public Game() {
         rate=new Rate();

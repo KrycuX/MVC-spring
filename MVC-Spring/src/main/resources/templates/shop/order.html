@@ -10,51 +10,49 @@
 <body>
 <div th:insert="~{shared/fragments :: microBar}"></div>
 <div th:insert="~{shared/fragments :: nav}"></div>
-<div class="container" th:object="${user}" style="display: block">
-<form>
-    <div style="display: block">
-    <label>Imie: </label>
-    <input th:field="*{imie}">
-    <label>Nazwisko: </label>
-    <input th:field="*{nazwisko}">
-        </div>
+<div class="container"  style="display: block">
+
+<form th:method="post" th:action="@{info}" th:object="${order}" >
+
 
     <div style="display: block;">
-        <label>Miasto: </label>
-        <input th:field="*{miasto}">
-        <label>Ulica: </label>
-        <input th:field="*{ulica}">
-        <label>nr Domu/Mieszkania: </label>
-        <input th:field="*{nrDomu}">
+       <label> Wybierz rodzaj dostawy</label>
+
+        <select th:field="*{dostawa.id}">
+            <option value="-1" selected="selected">-Choose-</option>
+            <option th:each="dostawa:${dostawa}" th:value="${dostawa.id} ">[[${dostawa.nazwa}]] [[${dostawa.cena}]] zl.</option>
+
+        </select>
+        <label>Wybierz rodzaj platnosci</label>
+
+        <select th:field="*{platnosc.id}">
+            <option value="-1" selected="selected">-Choose-</option>
+            <option th:each="platnosc:${platnosc}" th:value="${platnosc.id} ">[[${platnosc.nazwa}]]</option>
+
+        </select>
+        <h2>Total Price: </h2><div style="font-size: 20px; " th:text="*{price}+ zl."></div>
+
+        <div class="Butto" style="margin-top: 100px;"><input type="submit" value="Zatwierdz"></div>
     </div>
-    <div th:object="${obj}" style="float: right; font-size: 25px; display: flex;">
 
-        <p style="font-style: italic ;font-size: 25px; margin-right: 10px;">Total Price</p><div th:text="*{price} +  zl."></div>
+<div style="display: block; margin: 10px; font-size: 20px;">
+    <h1>LISTA GIER W ZAMOWIENIU</h1>
+    <BR>
+    <div th:each="gra:${order.game}" >
+        <div th:text="${gra.title}"> </div>
+        <div th:text="${gra.price}+ zl"> </div>
     </div>
-
-    <div style="display: block;margin-left: 115px;">
-
-    <label>Wybierz rodzaj dostawy</label>
-
-    <select >
-        <option value="-1" selected="selected">-Choose-</option>
-        <option th:each="dostawa:${dostawa}" th:value="${dostawa.id} ">[[${dostawa.nazwa}]] [[${dostawa.cena}]] zl.</option>
-
-    </select>
-    </div>
- <!--   <div th:each="gra:${shop}" style="font-size: 15px;display: flex; padding: 5px;">
-        <div th:text="*{gra.title}" style="margin-right: 5px;margin-left: 5px"></div>
-        <div th:text="*{gra.price}"></div>
+    <div style="float: right;"> </div>
 
 
-
-    </div>-->
+</div>
 
 
 
 
 
-    <div class="Butto" style="margin-top: 15px;padding-right: 30px;"><input type="submit" value="Zatwierdz"></div>
+
+
 </form>
 
 

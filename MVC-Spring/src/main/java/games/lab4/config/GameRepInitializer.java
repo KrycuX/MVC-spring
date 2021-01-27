@@ -58,6 +58,9 @@ public class GameRepInitializer {
 @Autowired
     private DostawaRep dostawaRep;
 
+@Autowired
+private PlatnoscRep platnoscRep;
+
     @Bean
     InitializingBean init(){
 
@@ -129,6 +132,11 @@ public class GameRepInitializer {
             dostawaRep.save(new Dostawa("Kurier",20.00f));
             dostawaRep.save(new Dostawa("Paczka Pocztowa",15.00f));
             dostawaRep.save(new Dostawa("Paczkomat",10.00f));
+
+    platnoscRep.save(new Platnosc("Platność BLIK"));
+    platnoscRep.save(new Platnosc("Gotówka"));
+    platnoscRep.save(new Platnosc("Przelew Zwykly"));
+
 
         gameGenreRep.save(new GameGenre("Fantasy"));
         gameGenreRep.save(new GameGenre("Sci-Fi"));

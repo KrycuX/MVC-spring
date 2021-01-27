@@ -13,7 +13,10 @@
  <div th:text="*{imie}"></div>
  <div th:text="*{nazwisko}"></div>
 
+    <div th:each="order:${user.order}">
 
+    <div th:text="${order.id}"></div>
+    </div>
 
 </div>
 

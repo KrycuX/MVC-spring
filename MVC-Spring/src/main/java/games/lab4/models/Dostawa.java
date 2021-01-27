@@ -5,13 +5,14 @@ import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 
 
 @Entity
 @Getter
 @Setter
 public class Dostawa {
-
+@Valid
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nazwa;

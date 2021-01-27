@@ -1,6 +1,8 @@
 package games.lab4.controllers;
 
+import games.lab4.models.OrderShop;
 import games.lab4.models.User;
+import games.lab4.repository.OrderRep;
 import games.lab4.repository.UserRep;
 import games.lab4.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +26,8 @@ public class UserRegFormController {
    private UserService userService;
 @Autowired
     private UserRep userRep;
+    @Autowired
+    private OrderRep orderRep;
 
 @GetMapping("/show")
 public String show(Model model){

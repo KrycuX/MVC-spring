@@ -1,24 +1,28 @@
 package games.lab4.controllers;
 
-import games.lab4.models.Koszyk;
-import games.lab4.repository.DostawaRep;
-import games.lab4.repository.GameRepository;
-import games.lab4.repository.KoszykRep;
-import games.lab4.repository.UserRep;
-import games.lab4.services.GameService;
+import games.lab4.models.*;
+import games.lab4.repository.*;
 import games.lab4.services.KoszykService;
+import games.lab4.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/shop")
-@SessionAttributes({"rGry", "oGry","gameFilter"})
+@SessionAttributes({"dostawa","platnosc"})
 public class BuyController {
 
  @Autowired
@@ -35,7 +39,13 @@ public class BuyController {
 
     @Autowired
     private DostawaRep dostawaRep;
+    @Autowired
+    private PlatnoscRep platnoscRep;
+    @Autowired
+    private OrderService orderService;
 
+    @Autowired
+    private OrderRep orderRep;
     @GetMapping("/show")
     public String showShop(Model model)
     {
@@ -85,25 +95,49 @@ public class BuyController {
 public String order(Model model)
     {
 
-
-
-
-
         Authentication y= SecurityContextHolder.getContext().getAuthentication();
 
         var x= userRep.findByUsername(y.getName());
 
         var z=koszykRep.findById(x.getKoszyk().getId()).get();
 
-        var d=dostawaRep.findAll();
-        model.addAttribute("user",x);
-        model.addAttribute("obj",z);
-        model.addAttribute("dostawa",d);
-        model.addAttribute("shop",z.getGame());
+        var order=new OrderShop();
+
+ order.setGame(z.getGame());
+ order.setPrice(z.getPrice());
+
+        model.addAttribute("order",order);
+
+
         return "shop/order";
     }
 
+    @PostMapping("/info")
+    public String info(@ModelAttribute("order")@Valid OrderShop order, Errors result)
+    {
+        Authentication y= SecurityContextHolder.getContext().getAuthentication();
+
+        var x= userRep.findByUsername(y.getName());
+
+        orderService.saveOrder(order,x);
 
 
+
+
+
+
+
+        return "/";
+    }
+
+
+    @ModelAttribute("dostawa")
+    public List<Dostawa> loadDostawa() {
+        return dostawaRep.findAll();
+    }
+    @ModelAttribute("platnosc")
+    public List<Platnosc> loadPlatnosc() {
+        return platnoscRep.findAll();
+    }
 
 }

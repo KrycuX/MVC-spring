@@ -7,6 +7,7 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -18,7 +19,7 @@ public class Koszyk {
 
     private Long idUser;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Game> game;
 
     private Integer amount;

@@ -15,8 +15,10 @@ public class GameGenre {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
     @ManyToMany(mappedBy="genres", fetch= FetchType.EAGER)
     private Set<Game> games;
+
     public GameGenre(){
         games= new HashSet<>();
     }
