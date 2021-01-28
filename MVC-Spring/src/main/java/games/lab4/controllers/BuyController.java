@@ -99,13 +99,15 @@ public String order(Model model)
         var z=koszykRep.findById(x.getKoszyk().getId()).get();
 
 
+if(x.getOrder()==null) {
+    x.setOrder(new ArrayList<>());
+}
 
-        x.setOrder(new OrderShop());
 
-        var order=x.getOrder();
+        var order=new OrderShop();
 
- order.setGame(new ArrayList<Game>(z.getGame()));
- order.setPrice(z.getPrice());
+        order.setGame(new ArrayList<Game>(z.getGame()));
+        order.setPrice(z.getPrice());
 
  userRep.save(x);
 

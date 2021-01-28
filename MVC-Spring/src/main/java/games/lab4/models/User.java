@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,9 +46,11 @@ public class User {
     @JoinColumn(name="Koszyk")
     private Koszyk koszyk;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+
+
     @JoinColumn(name="MyOrders")
-    private OrderShop order;
+    private List<OrderShop> order;
 
 @AssertTrue
 private boolean isPasswordEquals(){

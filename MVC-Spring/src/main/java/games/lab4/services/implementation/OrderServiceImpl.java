@@ -43,18 +43,21 @@ public class OrderServiceImpl implements OrderService {
         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
         Date date=new Date();
 
-
-
-
+         List<OrderShop> x=u.getOrder();
+         var l=k.getGame();
+         l=null;
         order.setGame(new ArrayList<Game>(k.getGame()));
         order.setOrderDate(dateFormat.format(date));
         order.setDostawa(d);
         order.setPlatnosc(p);
-
+        x.add(order);
         orderRep.save(order);
-
-        u.setOrder(order);
+        k.setGame(l);
+k.setPrice(0.00f);
+        u.setOrder(x);
         userRep.save(u);
+        koszykRep.save(k);
+
 
 
 
