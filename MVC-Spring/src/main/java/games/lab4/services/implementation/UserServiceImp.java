@@ -2,6 +2,7 @@ package games.lab4.services.implementation;
 
 import games.lab4.config.ProfilesNames;
 import games.lab4.models.Koszyk;
+import games.lab4.models.Photo;
 import games.lab4.models.Role;
 import games.lab4.models.User;
 import games.lab4.repository.RoleRep;
@@ -17,12 +18,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.validation.constraints.Email;
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -68,6 +72,9 @@ private TemplateEngine templateEngine;
     public void saveUser(User userForm) throws MessagingException {
 Role userRole= roleRep.findByType(Role.Types.ROLE_USER);
 var roles= new HashSet<Role>();
+
+
+
 roles.add(userRole);
 userForm.setRoles(roles);
 userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
@@ -78,7 +85,7 @@ var activationKey= UUID.randomUUID().toString();
 userForm.setActivationCode(activationKey);
 String message= createMessage(activationKey,userForm.getUsername());
 emailService.sendMimeMessage(userForm.getEmail(),"Activation",message);
-     userRep.save(userForm);
+userRep.save(userForm);
     }
 
     private String createMessage(String activationKey,String name) {

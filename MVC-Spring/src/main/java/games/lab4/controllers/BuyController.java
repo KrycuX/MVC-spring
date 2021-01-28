@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -120,9 +121,15 @@ if(x.getOrder()==null) {
     @PostMapping("/info")
     public String info(@ModelAttribute("order")@Valid OrderShop order, Errors result)
     {
+
+        if (result.hasErrors()) {
+            return "shop/order";
+        }
+
         Authentication y= SecurityContextHolder.getContext().getAuthentication();
 
         var x= userRep.findByUsername(y.getName());
+
 
         orderService.saveOrder(order,x);
 
@@ -135,7 +142,13 @@ if(x.getOrder()==null) {
         return "redirect:/";
     }
 
+@GetMapping("/details")
 
+public String details(Model model,@RequestParam("id") Long id){
+       // orderRep.getOne(id);
+        model.addAttribute("order",orderRep.getOne(id));
+return "shop/Details";
+}
     @ModelAttribute("dostawa")
     public List<Dostawa> loadDostawa() {
         return dostawaRep.findAll();

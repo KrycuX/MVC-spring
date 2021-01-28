@@ -9,20 +9,32 @@
 <body>
 <div th:insert="~{shared/fragments :: microBar}"></div>
 <div th:insert="~{shared/fragments :: nav}"></div>
-<div class="container" style="flex-direction:column;justify-content: center; align-items: center;" th:object="${user}">
+<div class="container2"  th:object="${user}">
 
 
-    <div style="display: flex; font-size: 20px;">
+    <div style="display: block; font-size: 20px;">
+        <h3>Imie i Nazwisko</h3>
+        <div style="display: flex">
         <div style="margin-left: 10px;" th:text="*{imie}"></div>
         <div style="margin-left: 10px;" th:text="*{nazwisko}"></div>
+        </div>
+        <h3>Adres</h3>
+        <div style="display: flex">
+        <div style="margin-left: 10px;" th:text="*{miasto}"></div>
+        <div style="margin-left: 10px;" th:text="*{ulica}"></div>
+        <div style="margin-left: 10px;" th:text="*{nrDomu}"></div>
+        </div>
+
+
     </div>
 
     <div>
         <h1>Moje Zamówienia</h1>
-        <div style="display: flex;padding: 10px" th:each="order:${user.order}">
+        <div style="display: flex;padding: 10px;font-size: 20px;" th:each="order:${user.order}">
 
             <div style="margin-left: 10px;" th:text="${order.id}"></div>
             <div style="margin-left: 10px;" th:text="${order.orderDate}"></div>
+            <a th:href="@{/shop/details(id=${order.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
         </div>
     </div>
 

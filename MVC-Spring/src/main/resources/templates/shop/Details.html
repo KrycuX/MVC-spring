@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <div th:replace="~{shared/fragments :: script}"></div>
+
+
+</head>
+
+<body>
+
+
+<div th:insert="~{shared/fragments :: microBar}"></div>
+
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+<div class="container2" th:object="${order}">
+
+
+    <div style="display: block; font-size: 15px;">
+        <h2>Data utworzenia:</h2>
+        <div th:text="*{orderDate}"></div>
+        <h2>Cena:</h2>
+        <div th:text="*{price}"></div>
+        <h2>Rodzaj dostawy:</h2>
+        <div th:text="*{dostawa.nazwa}"></div>
+        <h2>Rodzaj platnosci:</h2>
+        <div th:text="*{platnosc.nazwa}"></div>
+
+    </div>
+
+
+    <div style="display: block;  clear: both; padding: 10px;font-size: 20px; align-items: center;">
+        <h2>Gry w zamówieniu</h2>
+
+        <div th:each="gry:${order.game}">
+
+            <div th:text="${gry.title}"></div>
+            <div th:text="${gry.author}"></div>
+            <div th:text="${gry.price}"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div th:replace="~{shared/fragments :: footer}"></div>
+
+
+</body>
+</html>

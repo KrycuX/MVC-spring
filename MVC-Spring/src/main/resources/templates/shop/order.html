@@ -23,13 +23,20 @@
             <option th:each="dostawa:${dostawa}" th:value="${dostawa.id} ">[[${dostawa.nazwa}]] [[${dostawa.cena}]] zl.</option>
 
         </select>
+        <p style="color:red;position: relative" th:if="${#fields.hasErrors('dostawa.id')}"
+           th:each="err : ${#fields.errors('dostawa.id')}" th:text="${err}"></p>
+
         <label>Wybierz rodzaj platnosci</label>
 
         <select th:field="*{platnosc.id}">
             <option value="-1" selected="selected">-Choose-</option>
             <option th:each="platnosc:${platnosc}" th:value="${platnosc.id} ">[[${platnosc.nazwa}]]</option>
-
         </select>
+
+        <p style="color:red;position: relative" th:if="${#fields.hasErrors('platnosc.id')}"
+           th:each="err : ${#fields.errors('platnosc.id')}" th:text="${err}"></p>
+
+
         <h2>Total Price: </h2><div style="font-size: 20px; " th:text="*{price}+ zl."></div>
 
         <div class="Butto" style="margin-top: 100px;"><input type="submit" value="Zatwierdz"></div>

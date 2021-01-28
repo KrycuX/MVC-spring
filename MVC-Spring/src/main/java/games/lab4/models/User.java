@@ -52,6 +52,8 @@ public class User {
     @JoinColumn(name="MyOrders")
     private List<OrderShop> order;
 
+    private Photo photo;
+
 @AssertTrue
 private boolean isPasswordEquals(){
     return password==null|| passwordConfirm==null || password.equals(passwordConfirm);

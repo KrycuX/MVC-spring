@@ -6,17 +6,9 @@
     <div th:replace="~{shared/fragments :: script}"></div>
 </head>
 <body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
 <div th:insert="~{shared/fragments :: nav}"></div>
 
-<form id="login-form" th:action="@{/logout}" th:method="post" role="form" style="display: block;">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <input style="float: left;"type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Logout">
-            </div>
-        </div>
-    </div>
-</form>
 
 <div style="display: block" class="container" >
     <H1 style="text-align: center; font-size: 40px">Nie masz Uprawnien by otworzyc tę strone</H1>
