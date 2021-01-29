@@ -105,10 +105,13 @@
             <li th:class="${activePage == 'list'} ? 'nav-item active' : 'nav-item'">
                 <a th:class="${activePage == 'list'} ? 'nav-link active' : 'nav-link'" th:href="@{/game/list}">[[#{label.gra.list}]]</a>
             </li>
-            <li th:class="${activePage == 'listEdit'} ? 'nav-item active' : 'nav-item'">
-                <a th:class="${activePage == 'listEdit'} ? 'nav-link active' : 'nav-link'" th:href="@{/game/listEdit}">[[#{label.gra.edit}]]</a>
-            </li>
 
+            <li th:class="${activePage == 'listorder'} ? 'nav-item active' : 'nav-item'">
+                <a th:class="${activePage == 'listorder'} ? 'nav-link active' : 'nav-link'" th:href="@{/shop/list}">Order List</a>
+            </li>
+            <li th:class="${activePage == 'userlist'} ? 'nav-item active' : 'nav-item'">
+                <a th:class="${activePage == 'userlist'} ? 'nav-link active' : 'nav-link'" th:href="@{/user/list}">User List</a>
+            </li>
             <!--Dodać panel Użytkownika  -->
 
 

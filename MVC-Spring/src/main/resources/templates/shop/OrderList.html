@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+
+
+
+
+
+
+
+
+<div class="container2">
+
+    <div style="display: block;  clear: both; padding: 10px;font-size: 15px; align-items: center;">
+        <h2>Oczekujace</h2>
+<div th:each="order:${orders}">
+
+    <div th:if="${order.status=='Oczekujace'}" th:text="${order.id}"></div>
+    <div th:if="${order.status=='Oczekujace'}" th:text="${order.orderDate}"></div>
+    <div th:if="${order.status=='Oczekujace'}" th:text="${order.status}"></div>
+    <a th:if="${order.status=='Oczekujace'}"   th:href="@{/shop/details(id=${order.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
+    <a th:if="${order.status=='Oczekujace'}"   th:href="@{accept(id=${order.id})}"  class="btn btn-success" role="button">Akceptuj</a>
+
+
+</div>
+    </div>
+    <div style="display: block;  clear: both; padding: 10px;font-size: 15px; align-items: center;">
+    <h2>Wyslane</h2>
+    <div th:each="order:${orders}">
+
+        <div th:if="${order.status=='Wyslane'}" th:text="${order.id}"></div>
+        <div th:if="${order.status=='Wyslane'}" th:text="${order.orderDate}"></div>
+        <div th:if="${order.status=='Wyslane'}" th:text="${order.status}"></div>
+        <a th:if="${order.status=='Wyslane'}"   th:href="@{/shop/details(id=${order.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
+
+
+    </div>
+    </div>
+</div>
+<div th:replace="~{shared/fragments :: footer}"></div>
+
+
+
+</body>
+</html>
+</body>
+</html>

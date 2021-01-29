@@ -50,7 +50,7 @@
         <td th:text="*{gra.rodzajGry.name}"></td>
         <td th:text="*{gra.rate.ocena}"></td>
         <td> <a sec:authorize="hasRole('VIP') or hasRole('ADMIN')" class="btn btn-primary" th:href="@{edit(id=*{gra.id})}" role="button">Edit</a> <a sec:authorize="hasRole('ADMIN')" class="btn btn-danger" th:href="@{delete(id=*{gra.id})}" role="button">Delete</a>
-            <a sec:authorize="hasRole('USER') or hasRole('VIP') or hasRole('ADMIN')" class="btn btn-success" th:href="@{/shop/add(id=*{gra.id})}" role="button">Add to Cart</a>
+            <a sec:authorize="hasRole('USER') or hasRole('VIP')" class="btn btn-success" th:href="@{/shop/add(id=*{gra.id})}" role="button">Add to Cart</a>
         </td>
 
     </tr>

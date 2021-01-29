@@ -1,5 +1,6 @@
 package games.lab4.controllers;
 
+import games.lab4.config.pdf;
 import games.lab4.models.*;
 import games.lab4.repository.*;
 import games.lab4.services.KoszykService;
@@ -130,7 +131,13 @@ if(x.getOrder()==null) {
 
         var x= userRep.findByUsername(y.getName());
 
+pdf pdf=new pdf();
 
+        try {
+            pdf.createPDF(" "+x.getImie()+" "+x.getNazwisko()+" "+order.getOrderDate()+" "+ order.getPrice());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         orderService.saveOrder(order,x);
 
 
@@ -149,6 +156,30 @@ public String details(Model model,@RequestParam("id") Long id){
         model.addAttribute("order",orderRep.getOne(id));
 return "shop/Details";
 }
+    @GetMapping("/list")
+    public String list(Model model){
+        var x=orderRep.findAll();
+
+
+
+        model.addAttribute("orders",orderRep.findAll());
+        model.addAttribute("activePage", "listorder");
+        return "shop/OrderList";
+    }
+
+    @GetMapping("/accept")
+    public String accept(Model model,@RequestParam("id") Long id){
+
+   var x= orderRep.findById(id).get();
+   x.setStatus("Wyslane");
+
+orderRep.save(x);
+
+       // model.addAttribute("orders",x);
+
+        return "redirect:list";
+    }
+
     @ModelAttribute("dostawa")
     public List<Dostawa> loadDostawa() {
         return dostawaRep.findAll();

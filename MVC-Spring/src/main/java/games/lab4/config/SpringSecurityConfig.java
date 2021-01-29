@@ -49,7 +49,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 http.authorizeRequests()
         .antMatchers("/webjars/**", "/css/**","/","/game/list","/user/registration**","/user/registrationConf","/game/show**","/images/**").permitAll()
         .antMatchers("/game/show","/game/").hasRole("USER")
-        .antMatchers("/game/add", "/game/edit**","/game/delete**","/game/listEdit/**").hasRole("ADMIN")
+        .antMatchers("/game/add", "/game/edit**","/game/delete**","/game/listEdit/**","/shop/list/**","/user/list/**").hasRole("ADMIN")
         .antMatchers("/game/edit").hasRole("VIP")
         .anyRequest().authenticated();
  http.formLogin()

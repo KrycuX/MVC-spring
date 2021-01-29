@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="~{shared/fragments :: script}"></div>
+</head>
+<body>
+<div th:insert="~{shared/fragments :: microBar}"></div>
+<div th:replace="~{shared/fragments :: nav}"></div>
+
+
+
+
+
+
+
+
+
+<div class="container" style="display: block; padding: 10px; font-size: 20px;">
+    <div th:each="user:${users}" style="display: flex;padding: 20px;">
+
+        <div style="margin-left: 10px;" th:text="${user.id}"></div>
+        <div style="margin-left: 10px;" th:text="${user.username}"></div>
+        <a th:href="@{showuser(id=${user.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
+
+
+
+    </div>
+
+
+
+
+
+</div>
+<div th:replace="~{shared/fragments :: footer}"></div>
+
+
+
+</body>
+</html>

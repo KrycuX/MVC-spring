@@ -29,6 +29,7 @@ public class OrderShop {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Game> game;
 
+    private String status;
 
 
 

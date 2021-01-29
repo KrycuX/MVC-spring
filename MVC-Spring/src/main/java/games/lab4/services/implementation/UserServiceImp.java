@@ -80,11 +80,11 @@ userForm.setRoles(roles);
 userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
 userForm.setPasswordConfirm(userForm.getPassword());
 userForm.setKoszyk(new Koszyk());
-//userForm.setEnabled(false);
+userForm.setEnabled(true);
 var activationKey= UUID.randomUUID().toString();
 userForm.setActivationCode(activationKey);
 String message= createMessage(activationKey,userForm.getUsername());
-emailService.sendMimeMessage(userForm.getEmail(),"Activation",message);
+//emailService.sendMimeMessage(userForm.getEmail(),"Activation",message);
 userRep.save(userForm);
     }
 

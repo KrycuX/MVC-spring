@@ -50,6 +50,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderDate(dateFormat.format(date));
         order.setDostawa(d);
         order.setPlatnosc(p);
+        order.setStatus("Oczekujace");
         x.add(order);
         orderRep.save(order);
         k.setGame(l);

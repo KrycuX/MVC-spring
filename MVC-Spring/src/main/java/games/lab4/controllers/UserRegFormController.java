@@ -75,6 +75,25 @@ public String show(Model model){
         return "redirect:/login";
     }
 
+
+    @GetMapping("/list")
+    public String userList(Model model)
+    {
+        var x=userRep.findAll();
+
+        model.addAttribute("users",x);
+        model.addAttribute("activePage","userlist");
+        return "user/userList";
+    }
+    @GetMapping("/showuser")
+    public String showuser(Model model,@RequestParam("id") Long id){
+      var x=userRep.findById(id).get();
+
+
+
+        model.addAttribute("user", x);
+        return "user/userProfile";
+    }
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {
