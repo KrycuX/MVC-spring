@@ -13,7 +13,10 @@ public class baza {
     public static List<RodzajGry> rodzajGry;
     public static List<Rate> rateList;
 
+
     static{
+
+
 
         LocalDate data1 =LocalDate.of(1999,5,25);
         LocalDate data2 =LocalDate.of(1995,3,10);

@@ -131,7 +131,13 @@ if(x.getOrder()==null) {
 
         var x= userRep.findByUsername(y.getName());
 
+pdf pdf=new pdf();
 
+        try {
+            pdf.createPDF(" "+x.getImie()+" "+x.getNazwisko()+" "+order.getOrderDate()+" "+ order.getPrice());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         orderService.saveOrder(order,x);
 
 

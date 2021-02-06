@@ -12,7 +12,7 @@
 
 <div th:insert="~{shared/fragments :: nav}"></div>
 
-
+<a th:class="${activePage == 'list'} ? 'nav-link active' : 'nav-link'" th:href="@{/formularz/add}">form</a>
 
 <div style="display: block" class="container" >
     <H1 style="text-align: center; font-size: 40px">OBECNIE NA TOPIE!</H1>

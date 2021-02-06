@@ -16,6 +16,13 @@ import java.util.Random;
 @Configuration
 public class GameRepInitializer {
 
+
+
+
+
+
+
+
     private GameRepository gameRepository;
     @Autowired
   public void setGameRepository(GameRepository gameRepository){
@@ -85,6 +92,7 @@ private PlatnoscRep platnoscRep;
             User admin = new User("admin1234",true);
             admin.setRoles(new HashSet<>(Arrays.asList(roleAdmin)));
             admin.setPassword(passwordEncoder.encode("admin1234"));
+            admin.setKoszyk(new Koszyk());
             admin.setImie("Admin");
             admin.setNazwisko("Admin");
             admin.setMiasto("Wegrow");
@@ -94,6 +102,7 @@ private PlatnoscRep platnoscRep;
             User vip2 = new User("vip1234",true);
             vip2.setRoles(new HashSet<>(Arrays.asList(roleVip)));
             vip2.setPassword(passwordEncoder.encode("vip1234"));
+            vip2.setKoszyk(new Koszyk());
             vip2.setImie("Tomasz");
             vip2.setNazwisko("Krynicki");
             vip2.setMiasto("Siedlce");
@@ -105,6 +114,9 @@ private PlatnoscRep platnoscRep;
             userRep.save(vip2);
 
         }
+
+
+
 
 
         if(rodzajGryRep.findAll().isEmpty()){

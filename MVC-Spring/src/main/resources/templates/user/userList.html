@@ -19,17 +19,18 @@
 
 
 
-<div class="container" style="display: block; padding: 10px; font-size: 20px;">
+<div class="container" style=" padding: 10px; font-size: 20px;">
+
+    <div style="display: block;">
     <div th:each="user:${users}" style="display: flex;padding: 20px;">
 
-        <div style="margin-left: 10px;" th:text="${user.id}"></div>
-        <div style="margin-left: 10px;" th:text="${user.username}"></div>
-        <a th:href="@{showuser(id=${user.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
-
-
+        <div th:if="${user.enabled==true}" style="margin-left: 10px;" th:text="${user.id}"></div>
+        <div th:if="${user.enabled==true}" style="margin-left: 10px;" th:text="${user.username}"></div>
+        <div th:if="${user.enabled==true}" style="margin-left: 10px;" >Konto aktywne</div>
+        <a th:if="${user.enabled==true}" th:href="@{showuser(id=${user.id})}"  style="margin-left: 10px;" class="btn btn-primary" role="button">details</a>
 
     </div>
-
+    </div>
 
 
 

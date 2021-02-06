@@ -94,6 +94,17 @@ public String show(Model model){
         model.addAttribute("user", x);
         return "user/userProfile";
     }
+/*
+    @GetMapping("/active")
+    public String active(Model model,@RequestParam("id") Long id){
+        var x=userRep.findById(id).get();
+x.setEnabled(true);
+
+
+        model.addAttribute("user", x);
+        return "redirect:list";
+    }*/
+
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {

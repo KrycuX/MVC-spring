@@ -19,6 +19,7 @@ return aClass.isAssignableFrom(Game.class);
         {
             if(game.getAuthor().equalsIgnoreCase(game.getTitle())){
                 errors.rejectValue("author","theSameValues.gry.author");
+                
             }
         }
     }

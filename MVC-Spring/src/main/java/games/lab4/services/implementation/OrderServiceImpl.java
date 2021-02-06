@@ -1,6 +1,5 @@
 package games.lab4.services.implementation;
 
-import games.lab4.config.pdf;
 import games.lab4.models.Game;
 import games.lab4.models.Koszyk;
 import games.lab4.models.OrderShop;
@@ -10,7 +9,6 @@ import games.lab4.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,13 +58,7 @@ k.setPrice(0.00f);
         u.setOrder(x);
         userRep.save(u);
         koszykRep.save(k);
-        pdf pdf=new pdf();
 
-        try {
-            pdf.createPDF(" "+u.getImie()+" "+u.getNazwisko()+" "+order.getOrderDate()+" "+ order.getPrice()+" ");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
 
